@@ -1,3 +1,3 @@
 # ProjectManagmentSystem
 
-Техническое задание [docks/ts.md]
+[Техническое задание](docs/ts.md)
