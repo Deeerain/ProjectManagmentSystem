@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  backend:
+    container_name: backend
+    build: ./backend
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./backend/:/usr/src/app/
+    ports:
+      - "8000:8000"
+      - 3000:3000
+      - 35729:35729
+    env_file:
+      - ./.env.dev
+    stdin_open: true
+
+
+  db:
+    image: postgres:12.0-alpine
+    container_name: database
+    volumes:
+      - postgres_volume:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=django_user
+      - POSTGRES_PASSWORD=django_password
+      - POSTGRES_DB=django_db
+
+volumes:
+  postgres_volume: null

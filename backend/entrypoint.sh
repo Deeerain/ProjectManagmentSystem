@@ -1,24 +1,17 @@
 #!/bin/sh
 
-if [ "$DATABASE" = "postgres" ]
+if ["$DATABASE" = "postgres"]
 then
-    echo "Waiting for postgres..."
+  echo "DB bot yet run..."
 
-    while ! nc -z $SQL_HOST $SQL_PORT; do
-      sleep 0.1
-    done
+  while ! nc -z $POSTGRES_HOST $POSTGRES_PORT; do
+    sleep 0.1
+  done
+    echo "DB did run."
 
-    echo "PostgreSQL started"
 fi
 
-# Uncomment below to flush db e.g. after running tests
-# Just make sure you really mean it 
-# python manage.py flush --no-input
-
-# We have base custom user model so need to makemigrations out of box
-python manage.py makemigrations core
-
+python manage.py flush --no-input
 python manage.py migrate
-python manage.py collectstatic --noinput
 
 exec "$@"
