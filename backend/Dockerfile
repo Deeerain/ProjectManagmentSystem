@@ -1,6 +1,6 @@
 FROM python:3.9.6-alpine
 
-WORKDIR /usr/src/app
+WORKDIR /backend
 
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
@@ -14,4 +14,4 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
-ENTRYPOINT [ "/usr/src/app/entrypoint.sh" ]
+ENTRYPOINT [ "/backend/entrypoint.sh" ]
